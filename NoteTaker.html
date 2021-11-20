@@ -15,6 +15,7 @@ font-family:Sans-Serif;
      localStorage.setItem("Notes",data)
      var li = document.createElement("li");
     li.setAttribute("id",mr)
+li.setAttribute("style","font-family:Sans-Serif;")
      li.innerHTML = document.querySelector(".input").value + ` <button onclick="removenotes(event);" data-note="${document.querySelector(".input").value}" data-mr="${mr}">delete</button>`;
      document.body.appendChild(li)
      console.log(localStorage.getItem("Notes"))
@@ -27,7 +28,8 @@ font-family:Sans-Serif;
           var note = data[n].split("¦")[0];
       var mr = Math.random();
       var li = document.createElement("li");
-     li.setAttribute("id",liid)
+    li.setAttribute("style","font-family:Sans-Serif;")
+ li.setAttribute("id",liid)
      li.innerHTML = note + ` <button onclick="removenotes(event);" data-note="${note}" data-mr="${liid}">delete</button>`;
      document.body.appendChild(li)
       }
