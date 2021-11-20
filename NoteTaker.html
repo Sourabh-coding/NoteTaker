@@ -1,0 +1,39 @@
+<html>
+  <input class="input">
+  <button onclick="insertnotes();">Insert</button>
+  <script>
+  var score = 0;
+    function insertnotes() {
+      var mr = Math.random();
+     var data = localStorage.getItem("Notes") + document.querySelector(".input").value + "¦" + mr + "|";
+     localStorage.setItem("Notes",data)
+     var li = document.createElement("li");
+    li.setAttribute("id",mr)
+     li.innerHTML = document.querySelector(".input").value + ` <button onclick="removenotes(event);" data-note="${document.querySelector(".input").value}" data-mr="${mr}">delete</button>`;
+     document.body.appendChild(li)
+     console.log(localStorage.getItem("Notes"))
+    }
+    window.addEventListener("load",function(){
+      var data = localStorage.getItem("Notes").split("|");
+      for(var n = 0; n < data.length; n++){
+        if(data[n] !== ""){
+          var liid = data[n].split("¦")[1];
+          var note = data[n].split("¦")[0];
+      var mr = Math.random();
+      var li = document.createElement("li");
+     li.setAttribute("id",liid)
+     li.innerHTML = note + ` <button onclick="removenotes(event);" data-note="${note}" data-mr="${liid}">delete</button>`;
+     document.body.appendChild(li)
+      }
+      }
+    })
+    function removenotes(event){
+      document.getElementById(event.target.getAttribute("data-mr")).style.display = "none";
+      var replace = event.target.getAttribute("data-note")+"¦"+event.target.getAttribute("data-mr")+"|";
+      var notereplace = localStorage.getItem("Notes").replace(replace,"")
+      localStorage.setItem("Notes",notereplace)
+      console.log(localStorage.getItem("Notes"))
+      
+    }
+  </script>
+</html>
